@@ -1,0 +1,186 @@
+{
+  "snapshot_date": "2026-09-30",
+  "default_effort": "medium",
+  "fallback": "none",
+  "models": {
+    "sol-6": {
+      "name": "GPT-6 Sol", "family_slug": "gpt-6-sol", "default_effort": "medium",
+      "configurations": [
+        {"slug": "gpt-6-sol-low", "id": "01459872-433a-4ab2-8e99-7083162172eb", "effort": "low"},
+        {"slug": "gpt-6-sol-medium", "id": "780a4a85-17ff-4175-a8dd-ebca4823e61b", "effort": "medium"}
+      ]
+    },
+    "luna-5-6": {
+      "name": "GPT-5.6 Luna", "family_slug": "gpt-5-6-luna", "default_effort": "high",
+      "website_source": "2026-10-07",
+      "selection_note": "All efforts from the 2026-10-07 website capture, which added low, medium and max. High and xhigh match Sept 30.",
+      "configurations": [
+        {"slug": "gpt-5-6-luna-low", "id": "050c61cd-cddc-463a-a30a-a82aaa37be59", "effort": "low"},
+        {"slug": "gpt-5-6-luna-medium", "id": "58b812bf-8498-46db-b834-f43ccc614b61", "effort": "medium"},
+        {"slug": "gpt-5-6-luna-high", "id": "aa55297e-8fbf-4372-b4ab-9b068dc6396c", "effort": "high"},
+        {"slug": "gpt-5-6-luna-xhigh", "id": "87110ff0-1f79-41b4-9976-eda250597317", "effort": "xhigh"},
+        {"slug": "gpt-5-6-luna", "id": "426d24c8-49ae-482a-b4a8-20f1c53f21c1", "effort": "max"}
+      ]
+    },
+    "mimo-flash": {
+      "name": "MiMo V2.6 Flash", "family_slug": "mimo-v2-6-flash", "effort_policy": "default", "default_effort": null,
+      "configurations": [{"slug": "mimo-v2-6-flash", "id": "127de816-57d3-4037-8484-480a613cd413", "effort": null}]
+    },
+    "deepseek-flash": {
+      "name": "DeepSeek V4.1 Flash", "family_slug": "deepseek-v4-1-flash", "effort_policy": "default", "default_effort": "max",
+      "configurations": [{"slug": "deepseek-v4-1-flash", "id": "dbe7c625-3100-4463-b479-a228c41f75dd", "effort": "max"}]
+    },
+    "qwen-flash": {
+      "name": "Qwen 3.8 Flash", "family_slug": "qwen3-8-flash-next", "effort_policy": "default", "default_effort": null,
+      "selection_note": "Qwen3.8-Flash-Next is the closest match, owner-approved.",
+      "configurations": [{"slug": "qwen3-8-flash-next", "id": "9ac3908c-9eb2-44db-8c01-3ec7da6fc2ae", "effort": null}]
+    },
+    "glm-flash": {
+      "name": "GLM 5.3 Flash", "family_slug": "glm-5-3-flash", "effort_policy": "default", "default_effort": "max",
+      "configurations": [{"slug": "glm-5-3-flash", "id": "19496b81-9f41-4214-a77a-1df803b3c5ae", "effort": "max"}]
+    },
+    "glm": {
+      "name": "GLM 5.3", "family_slug": "glm-5-3", "effort_policy": "default", "default_effort": "max",
+      "configurations": [{"slug": "glm-5-3", "id": "cd684ea4-b475-4269-b001-d469d06d8a7a", "effort": "max"}]
+    },
+    "qwen-max": {
+      "name": "Qwen 3.8 Max", "family_slug": "qwen3-8-max", "effort_policy": "default", "default_effort": null,
+      "configurations": [{"slug": "qwen3-8-max", "id": "b112af07-3bd5-4647-b09f-b23204361bb2", "effort": null}]
+    },
+    "mimo-pro": {
+      "name": "MiMo V2.6 Pro", "family_slug": "mimo-v2-6-pro", "effort_policy": "default", "default_effort": null,
+      "configurations": [{"slug": "mimo-v2-6-pro", "id": "24d8fdfe-6241-424e-b7b7-1b6efb06e4fb", "effort": null}]
+    },
+    "kimi": {
+      "name": "Kimi K3", "family_slug": "kimi-k3", "effort_policy": "default", "default_effort": "max",
+      "configurations": [{"slug": "kimi-k3", "id": "f7d2fc3e-1f7b-405f-818c-07952a4af78f", "effort": "max"}]
+    },
+    "muse": {
+      "name": "Muse Spark 1.3", "family_slug": "muse-spark-1-3", "effort_policy": "default", "default_effort": "xhigh",
+      "configurations": [{"slug": "muse-spark-1-3-xhigh", "id": "d5170215-69be-4129-849b-26d8d8825bfc", "effort": "xhigh"}]
+    },
+    "sol": {
+      "name": "GPT-6.1 Sol",
+      "family_slug": "gpt-6-1-sol",
+      "default_effort": "medium",
+      "configurations": [
+        {
+          "slug": "gpt-6-1-sol-low",
+          "id": "e76e0fe5-93ca-4272-9359-2eb1740467d1",
+          "effort": "low"
+        },
+        {
+          "slug": "gpt-6-1-sol-medium",
+          "id": "a2e51d62-ea4e-4f15-8be0-be9dc1fb489d",
+          "effort": "medium"
+        },
+        {
+          "slug": "gpt-6-1-sol-high",
+          "id": "3b84fee3-b70a-41bc-819e-5fbdef9a0042",
+          "effort": "high"
+        },
+        {"slug": "gpt-6-1-sol-xhigh", "id": "092a3b0e-c5c8-45dc-bf1b-53673c8ff352", "effort": "xhigh", "website_source": "2026-10-07"},
+        {"slug": "gpt-6-1-sol", "id": "b25ac058-1e33-4c31-bbc9-a20c3ad0717a", "effort": "max", "website_source": "2026-10-07"}
+      ]
+    },
+    "gemini-flash": {
+      "name": "Gemini 3.8 Flash",
+      "family_slug": "gemini-3-8-flash",
+      "default_effort": "medium",
+      "configurations": [
+        {"slug": "gemini-3-8-flash-medium", "id": "744fa3c1-42a7-4995-b138-fb6be11f463c", "effort": "medium"},
+        {"slug": "gemini-3-8-flash", "id": "8a999846-4c1d-4ce7-a8b7-1310a7166fd7", "effort": "high"}
+      ]
+    },
+    "luna": {
+      "name": "GPT-6 Luna",
+      "family_slug": "gpt-6-luna",
+      "default_effort": "medium",
+      "website_source": "2026-10-07",
+      "selection_note": "All efforts from the 2026-10-07 website capture: AA re-scored GPT-6 Luna up 0.4 to 0.8 points and added max. Sept 30 rows remain in git history and sources/2026-09-30.",
+      "configurations": [
+        {
+          "slug": "gpt-6-luna-low",
+          "id": "bf9708d8-933d-44f6-affa-b696a7a650c9",
+          "effort": "low"
+        },
+        {
+          "slug": "gpt-6-luna-medium",
+          "id": "36667da0-9222-4967-adbb-f7efa15ad213",
+          "effort": "medium"
+        },
+        {
+          "slug": "gpt-6-luna-high",
+          "id": "7d1229bc-deea-4717-ba5b-f59a35d991e3",
+          "effort": "high"
+        },
+        {
+          "slug": "gpt-6-luna-xhigh",
+          "id": "19813eb2-460a-475c-af65-810bb8660fec",
+          "effort": "xhigh"
+        },
+        {
+          "slug": "gpt-6-luna",
+          "id": "6fb13851-40ce-4bda-ad3f-6b38e0c5daa7",
+          "effort": "max"
+        }
+      ]
+    },
+    "opus": {
+      "name": "Claude Opus 5.5",
+      "family_slug": "claude-opus-5-5",
+      "default_effort": "medium",
+      "configurations": [
+        {
+          "slug": "claude-opus-5-5-low",
+          "id": "4416ca93-fde6-4b7b-abbc-3a6be109cc3d",
+          "effort": "low"
+        },
+        {
+          "slug": "claude-opus-5-5-medium",
+          "id": "ea9e0da6-169f-43c6-92f5-730a10d6ff8d",
+          "effort": "medium"
+        },
+        {"slug": "claude-opus-5-5-high", "id": "f314eade-2232-44bf-a3ab-9b326bc67de6", "effort": "high", "website_source": "2026-10-07"},
+        {"slug": "claude-opus-5-5-xhigh", "id": "df5bf99d-d228-4715-b41b-19ca86118777", "effort": "xhigh", "website_source": "2026-10-07"},
+        {"slug": "claude-opus-5-5", "id": "2f3c4dc9-a450-4303-8697-0237257cf08f", "effort": "max", "website_source": "2026-10-07"}
+      ]
+    },
+    "haiku": {
+      "name": "Claude Haiku 5.5",
+      "family_slug": "claude-haiku-5-5",
+      "default_effort": "high",
+      "website_source": "2026-10-07",
+      "selection_note": "Website-only rows (no API refresh). Default high (revised from xhigh the same day after FrontierCode, CursorBench and system-card curves); see EFFORTS.md.",
+      "configurations": [
+        {"slug": "claude-haiku-5-5-low", "id": "42908ae3-d3bd-4934-be19-fbff93d3fde8", "effort": "low"},
+        {"slug": "claude-haiku-5-5-medium", "id": "af26fff4-8120-41be-a5f0-86aaea023f20", "effort": "medium"},
+        {"slug": "claude-haiku-5-5-high", "id": "20829974-af06-497e-9f42-77fb958d43b9", "effort": "high"},
+        {"slug": "claude-haiku-5-5-xhigh", "id": "41b5bf5e-daf6-42d9-b8d1-60e340a3028d", "effort": "xhigh"},
+        {"slug": "claude-haiku-5-5", "id": "7d064a11-6e78-4030-b535-cdf940615041", "effort": "max"}
+      ]
+    },
+    "sonnet": {
+      "name": "Claude Sonnet 5.5",
+      "family_slug": "claude-sonnet-5-5",
+      "default_effort": "medium",
+      "website_source": "2026-10-07",
+      "selection_note": "All efforts from the 2026-10-07 website capture: low gained an index and costs moved to the 0.10 USD cache price. Sept 30 rows remain in git history and sources/2026-09-30.",
+      "configurations": [
+        {
+          "slug": "claude-sonnet-5-5-low",
+          "id": "bbc2ffea-cf6b-43be-8c41-1769347e234d",
+          "effort": "low"
+        },
+        {
+          "slug": "claude-sonnet-5-5-medium",
+          "id": "042e8a37-fcd0-40f4-8f41-99215fb68eda",
+          "effort": "medium"
+        },
+        {"slug": "claude-sonnet-5-5-high", "id": "268525e2-f873-4178-bc07-e6a0ee1f002d", "effort": "high"},
+        {"slug": "claude-sonnet-5-5-xhigh", "id": "975aeaef-50bd-4a65-9c73-f1015adcd4d4", "effort": "xhigh"},
+        {"slug": "claude-sonnet-5-5", "id": "b171d979-5ec1-45de-b8b9-db1ee65e77ec", "effort": "max"}
+      ]
+    }
+  }
+}

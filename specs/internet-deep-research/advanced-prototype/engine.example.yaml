@@ -1,0 +1,98 @@
+# HISTORICAL 2026-10-01: Parked example, not active config.
+# Current web facts: ~/agents/capabilities/web/README.md
+# Internet deep research engine config (example, v1, 2026-09-30).
+# One file to swap models, providers, and sizes. No secrets here: keys stay
+# in each provider's own setup (see specs/internet-deep-research/mcp-setup.md).
+# Prices were checked on vendor pages on 2026-09-30 (see models-and-plans.md).
+# Recheck any price older than 30 days.
+
+# Tier used when the request does not say (user decision 2026-09-30):
+# deep research defaults to small; a quick web search (web-search skill) is tiny.
+default_tier: small
+quick_search_tier: tiny
+
+# Size presets. Any value can be overridden per run ("medium, 30 searches").
+# All caps are ceilings, not targets.
+tiers:
+  tiny:   { max_searches: 5,   max_reads: 6,   max_rounds: 1, max_subquestions: 1,  max_workers: 0 }
+  small:  { max_searches: 12,  max_reads: 15,  max_rounds: 2, max_subquestions: 3,  max_workers: 0 }
+  medium: { max_searches: 50,  max_reads: 60,  max_rounds: 3, max_subquestions: 6,  max_workers: 2 }
+  large:  { max_searches: 200, max_reads: 240, max_rounds: 5, max_subquestions: 15, max_workers: 4 }
+  xl:     { max_searches: 500, max_reads: 600, max_rounds: 6, max_subquestions: 30, max_workers: 6 }
+
+# Second hard limit: extra cash beyond flat-fee plans (paid search, paid
+# reading, pay-per-use model calls). The helper refuses the next action if it
+# could push spend past this.
+max_usd: 1.00
+allow_paid_spillover: false     # never move a subscription run onto a paid API silently
+
+# Rules shared by all tiers.
+rules:
+  explore_until: 0.80           # stop exploring at 80% of any cap; the rest is for select/write/audit/repair
+  straightforward_cap: 5        # a one-fact question never uses more searches than this
+  max_no_gain_rounds: 2         # rounds in a row with no new supported item or resolved conflict
+  max_pages_per_site_per_round: 2
+  max_page_tokens: 8000         # trim long pages; the helper splits them into chunks with line numbers
+  max_quote_words: 40
+  max_questions_to_user: 1
+  supported_rule: "one primary source, or two independent sources that agree"
+  strict_mode: true             # all searches and reads go through the helper; harness web tools off
+  audit:
+    max_claims: { tiny: 10, small: 25, medium: 50, large: 80, xl: 120 }
+    repair_rounds: 1
+
+# Per-call limits the helper passes into prompts (see stage-prompts.md,
+# "Where each variable comes from").
+prompt_limits:
+  max_queries: 4            # queries per sub-question per round
+  max_picks: 4              # results opened per search batch
+  max_notes: 6              # evidence notes per page chunk
+  max_gaps: 5               # gap questions per gap check
+  max_items: 80             # evidence records given to the writer
+  max_tokens: 60000         # evidence tokens given to the writer
+  max_report_words: { tiny: 600, small: 1200, medium: 2500, large: 5000, xl: 8000 }
+
+# Model slots. Swap one line when a subscription or price changes.
+# price_* is USD per million tokens; "plan" means a flat-fee plan (count usage, not dollars).
+models:
+  cheap:  { provider: deepseek,        model: deepseek-flash,      price_in: 0.15, price_out: 0.60, note: "DeepSeek-V4.1-Flash on the direct API; off-peak price, peak hours double" }
+  smart:  { provider: harness,         model: session,             price: plan,  note: "the harness's own model, e.g. GPT-6.1 Sol in Codex or Sonnet 5.5 in Claude Code" }
+  writer: { provider: harness,         model: session,             price: plan }
+
+# Named model profiles for quick switching.
+profiles:
+  cheapest:      { cheap: deepseek/deepseek-flash, smart: deepseek/deepseek-flash,     writer: deepseek/deepseek-flash }
+  subscriptions: { cheap: deepseek/deepseek-flash, smart: harness/session,             writer: harness/session }
+  balanced-api:  { cheap: deepseek/deepseek-flash, smart: anthropic/claude-sonnet-5-5, writer: anthropic/claude-sonnet-5-5 }
+  best:          { cheap: anthropic/claude-sonnet-5-5,  smart: anthropic/claude-opus-5-5,       writer: anthropic/claude-opus-5-5 }
+  # First runtime (user decision 2026-09-30): OpenCode with Go subagents, run
+  # through the OpenCode client only (never direct API calls to Go).
+  opencode-go:   { cheap: opencode-go/deepseek-v4.1-flash, cheap_alt: opencode-go/muse-spark-1.3, smart: openai-chatgpt/gpt-6.1-sol, writer: openai-chatgpt/gpt-6.1-sol, note: "check exact ids with `opencode models`" }
+default_profile: subscriptions
+
+# Refuse to start a "subscriptions" run when this is set: Claude Code would
+# bill the API instead of the plan.
+refuse_if_env_set: [ANTHROPIC_API_KEY]
+
+# Search providers, tried in order. price is USD per search.
+# Native first (user decision 2026-09-30). Paid providers are off unless the
+# user asks for them by name or asks for deep research with scraping tools.
+search:
+  - { name: codex_search, price: plan, note: "helper calls `codex exec --search` as a search engine; ChatGPT plan usage; one call may run several queries" }
+  - { name: claude_search, price: plan, note: "same idea with `claude -p` WebSearch; watch Claude weekly limits" }
+  - { name: searxng,  price: 0,     note: "self-hosted; upstream engines can rate-limit" }
+  - { name: parallel, price: 0.001, mode: fast, opt_in: true, note: "$1 per 1,000 Fast; $5 Basic/Advanced; $5 free a month" }
+  - { name: brave,    price: 0.005, opt_in: true, note: "own index; $5 free a month" }
+  - { name: exa,      price: 0.007, mode: auto, opt_in: true, note: "search by meaning; $4 Instant, $12 Deep; $10 free a month" }
+
+# Page readers, tried in order. price is USD per page.
+read:
+  - { name: plain_fetch, price: 0,     note: "helper's own fetch and text extraction" }
+  - { name: parallel,    price: 0.001, opt_in: true, note: "Extract, $1 per 1,000 URLs" }
+  - { name: firecrawl,   price: 0.0038, opt_in: true, note: "hard pages only; a returned 403/404 still costs a credit" }
+
+# Cache pages by normalized URL for this long, across runs.
+cache_days: 7
+
+# Where runs are saved (see specs/research/spec.md for artifact rules).
+output_root: ~/agents/artifacts/investigations

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "Artificial Analysis",
+  "checked_date": "2026-09-30",
+  "methodology_label": "Intelligence Index v4.3.2 on saved website; API exposes 4.3 only",
+  "metrics": [
+    {"slug": "intelligence-index", "name": "Intelligence Index", "status": "accepted", "api_key": "evaluations.artificial_analysis_intelligence_index", "unit": "index_points", "higher_is_better": true},
+    {"slug": "automationbench-aa", "name": "AutomationBench-AA", "status": "accepted", "view": "benchmark", "website_key": "automationBenchPartialScore", "unit": "fraction", "higher_is_better": true, "meaning": "Share of SaaS task objectives completed without guardrail violations"},
+    {"slug": "terminalbench-4-0", "name": "Terminal-Bench 4.0", "status": "accepted", "view": "benchmark", "website_key": "terminalBench40", "unit": "fraction", "higher_is_better": true, "meaning": "Success on difficult terminal tasks; harness/settings affect applicability"},
+    {"slug": "aa-omniscience", "name": "AA-Omniscience Index", "status": "accepted", "view": "benchmark", "website_key": "omniscience", "unit": "index_points", "range": [-100, 100], "higher_is_better": true, "meaning": "Reliability composite, not percentage"},
+    {"slug": "gdp-pdf", "name": "GDP.pdf all-pass", "status": "accepted", "view": "benchmark", "website_key": "gdpPdfAllPass", "unit": "fraction", "higher_is_better": true, "meaning": "Professional long-document reasoning; not a direct hallucination rate"},
+    {"slug": "aa-omniscience-accuracy", "status": "accepted", "website_key": "omniscienceAccuracy", "unit": "fraction", "higher_is_better": true, "denominator": "all questions"},
+    {"slug": "aa-omniscience-hallucination", "status": "accepted", "website_key": "omniscienceHallucinationRate", "unit": "fraction", "higher_is_better": false, "denominator": "incorrect + partial answers + not attempted", "meaning": "Incorrect answers divided by non-correct responses, not all-question error rate"},
+    {"slug": "aa-lcr-v1-1", "name": "AA-LCR v1.1", "status": "accepted", "view": "benchmark", "website_key": "lcr", "evaluation_slug": "artificial-analysis-long-context-reasoning", "unit": "fraction", "higher_is_better": true, "context_range_from_saved_description": "10k–100k tokens", "meaning": "Long-context reasoning pass-rate"},
+    {"slug": "aa-briefcase", "name": "AA-Briefcase v1.1", "status": "accepted", "view": "benchmark", "evaluation_slug": "aa-briefcase", "unit": "Elo", "higher_is_better": true, "meaning": "Combined rubric pass-rate, analytical quality Elo and presentation Elo; saved JSON-LD AA-Briefcase Elo"}
+  ],
+  "extension_rule": "New metrics require source/version/unit/direction/configuration evidence; retain raw values and add new accepted mappings rather than changing an existing field's meaning."
+}

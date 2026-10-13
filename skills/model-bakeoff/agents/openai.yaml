@@ -1,0 +1,4 @@
+interface:
+  display_name: "Model Bakeoff"
+  short_description: "Compare models on one benchmark task"
+  default_prompt: "Use $model-bakeoff to compare requested models on this benchmark task."
